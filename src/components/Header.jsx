@@ -3,8 +3,10 @@ import Image from "next/image"
 import {AiOutlineSearch } from "react-icons/ai"
 import {AiOutlineShoppingCart} from "react-icons/ai"
 import {FiMenu} from "react-icons/fi"
+import { useSession, signIn, signOut } from "next-auth/react"
 
 const Header = () => {
+  const { data: session } = useSession()
   return (
     <header>
         {/* top nav */}
@@ -25,8 +27,12 @@ const Header = () => {
             </div>
             {/* right corner */}
             <div className='text-white flex space-x-6 ml-4 items-center mr-4 text-sm whitespace-nowrap'>
-              <div  className='link'>
-                <p>Hello vishnu</p>
+              <div onClick={signIn} className='link'>
+                <p>
+                  {
+                    session?`Hello ${session.user.name}`:"Signin"
+                  }
+                </p>
                 <p className='font-bold   md:text-xs'>Address & Lists</p>
               </div >
               <div className='link'>
