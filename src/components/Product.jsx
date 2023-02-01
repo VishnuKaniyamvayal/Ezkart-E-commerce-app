@@ -1,12 +1,23 @@
 import React, { useState } from 'react'
 import Image from 'next/image'
 import {AiFillStar} from "react-icons/ai"
+import { useDispatch } from 'react-redux'
+import { addToBasket } from '../slices/basketSlice'
 
 let maxRating = 5
 let minRating = 1
 
 
 const Product = ({id,title,price, description,category,image}) => {
+    const dispatch = useDispatch();
+
+
+    const addItemsToBasket = ()=>{
+        const Product = {
+            id,title,price, description,category,image,hasPrime,rating
+        }
+        dispatch(addToBasket(Product))
+    }
   
     const [rating] = useState(
         Math.floor(Math.random()* (maxRating - minRating + 1) + minRating)
@@ -34,7 +45,7 @@ const Product = ({id,title,price, description,category,image}) => {
             <img className='w-12 ' src="https:/links.papareact.com/fdw" alt="" />
             <p className='text-xs text-gray-400'>Free Delivery</p>
             </div>}
-        <button className='mt-auto button'>Add to Basket</button>
+        <button onClick={addItemsToBasket} className='mt-auto button'>Add to Basket</button>
     </div>
   )
 }
