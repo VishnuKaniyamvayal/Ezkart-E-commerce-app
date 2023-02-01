@@ -17,7 +17,7 @@ const CheckoutProduct = ({id,title,image,price, description,category,hasPrime,ra
     return (
 
 
-    <div className='grid grid-cols-5 bg-white'>
+    <div className='grid grid-cols-5 bg-white p-4'>
         <Image className='m-3'
             src={image}
             height={200}
